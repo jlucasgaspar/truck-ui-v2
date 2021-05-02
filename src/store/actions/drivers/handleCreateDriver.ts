@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { Driver, IDriver } from 'models/Driver';
 import { api } from 'services/api';
 import { storageProvider } from 'services/storage';
@@ -28,11 +28,11 @@ export const handleCreateDriver = (driverParams: IParams): IThunk => async (disp
 
 		if (cpfValidated.error || phoneValidated.error || cnhValidated.error || driverCpfExists || driverCnhExists) {
 			dispatch(setLoadingTo(false));
-			if (cpfValidated.error) return toastr.error(cpfValidated.error, '');
-			if (phoneValidated.error) return toastr.error(phoneValidated.error, '');
-			if (cnhValidated.error) return toastr.error(cnhValidated.error, '');
-			if (driverCpfExists) return toastr.error('Este CPF já está cadastrado na empresa.', '');
-			if (driverCnhExists) return toastr.error('Esta CNH já está cadastrada na empresa.', '');
+			if (cpfValidated.error) return handleToast.error(cpfValidated.error);
+			if (phoneValidated.error) return handleToast.error(phoneValidated.error);
+			if (cnhValidated.error) return handleToast.error(cnhValidated.error);
+			if (driverCpfExists) return handleToast.error('Este CPF já está cadastrado na empresa.');
+			if (driverCnhExists) return handleToast.error('Esta CNH já está cadastrada na empresa.');
 		}
 
 		let photo_url = '';
@@ -51,12 +51,12 @@ export const handleCreateDriver = (driverParams: IParams): IThunk => async (disp
 
 		const response = await api.post<Driver>('/drivers', driverData);
 		const driver = response.data;
-		toastr.success(`Motorista ${driver.name} adicionado com sucesso.`, '');
+		handleToast.success(`Motorista ${driver.name} adicionado com sucesso.`);
 		dispatch(setLoadingTo(false));
 		return dispatch(setCreateDriver(driver));
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(setLoadingTo(false));
 	}
 }

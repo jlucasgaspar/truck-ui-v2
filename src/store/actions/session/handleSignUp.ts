@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { IUser, User } from 'models/User';
 import { firebaseAuth } from 'config/firebase';
 import { api } from 'services/api';
@@ -18,7 +18,7 @@ export const handleSignUp = ({ email, name, password, phone }: IParams): IThunk 
 	try {
 		const phoneValidated = validateInput.phone(phone);
 		if (phoneValidated.error) {
-			toastr.error(phoneValidated.error, '');
+			handleToast.error(phoneValidated.error);
 			return;
 		}
 		const validatedPhone = phoneValidated.digits;
@@ -32,10 +32,10 @@ export const handleSignUp = ({ email, name, password, phone }: IParams): IThunk 
 		const { data } = await api.post<User>('/users', userBody);
 		dispatch(setUser(data));
 		dispatch(setLoadingTo(false));
-		toastr.success(`Bem-vindo, ${name}!`, '');
+		handleToast.success(`Bem-vindo, ${name}!`);
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(handleLogout());
 	}
 }

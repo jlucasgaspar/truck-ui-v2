@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { IUser } from 'models/User';
 import { firebaseAuth } from 'config/firebase';
 import { handleError } from 'utils/errors';
@@ -15,11 +15,11 @@ export const handleLogin = ({ email, password }: IParams): IThunkAction => async
 	try {
 		dispatch(setLoadingTo(true));
 		const { user } = await firebaseAuth.signInWithEmailAndPassword(email, password);
-		if (user) toastr.success(`Bem-vindo, ${user.displayName || email}!`, '');
+		if (user) handleToast.success(`Bem-vindo, ${user.displayName || email}!`);
 		return dispatch(setLoadingTo(false));
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		dispatch(setLoadingTo(false));
 		return dispatch(handleLogout());
 	}

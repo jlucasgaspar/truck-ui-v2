@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { Vehicle } from 'models/Vehicle';
 import { handleError } from 'utils/errors';
 import { api } from 'services/api';
@@ -23,7 +23,7 @@ export const handleGetVehicles = (): IThunk => async (dispatch, getState) => {
 		dispatch(setLoadingTo(false));
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(setLoadingTo(false));
 	}
 }

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toastr } from 'react-redux-toastr';
 import { isEmpty } from 'lodash';
 
 import { User } from 'models/User';
@@ -15,6 +14,7 @@ import { Loading } from 'components/_shared/Loading';
 import { AppLayout } from 'layout/AppLayout';
 import { UserWithoutCompanyRouter } from './UserWithoutCompanyRouter';
 import { UserWithCompanyRouter } from './UserWithCompanyRouter';
+import { handleToast } from 'utils/toast';
 
 type IUserAndCompanyResponse = { user: User; company?: Company; }
 
@@ -31,7 +31,7 @@ export const AppRouter: React.FC = () => {
 				if (data.company) dispatch(setCompany(data.company));
 			} catch (err) {
 				const message = handleError.generateMessage(err);
-				return toastr.error(message, '');
+				return handleToast.error(message);
 			}
 		}
 

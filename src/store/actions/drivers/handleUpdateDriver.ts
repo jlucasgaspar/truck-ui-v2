@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { Driver, IDriver } from 'models/Driver';
 import { handleError } from 'utils/errors';
 import { validateInput } from 'utils/validators';
@@ -24,9 +24,9 @@ export const handleUpdateDriver = (driverParams: IParams): IThunk => async (disp
 
 		if (cpfValidated.error || phoneValidated.error || cnhValidated.error) {
 			dispatch(setLoadingTo(false));
-			if (cpfValidated.error) return toastr.error(cpfValidated.error, '');
-			if (phoneValidated.error) return toastr.error(phoneValidated.error, '');
-			if (cnhValidated.error) return toastr.error(cnhValidated.error, '');
+			if (cpfValidated.error) return handleToast.error(cpfValidated.error);
+			if (phoneValidated.error) return handleToast.error(phoneValidated.error);
+			if (cnhValidated.error) return handleToast.error(cnhValidated.error);
 		}
 
 		let photo_url = '';
@@ -47,12 +47,12 @@ export const handleUpdateDriver = (driverParams: IParams): IThunk => async (disp
 
 		const response = await api.put<Driver>(`/drivers/${driverData.id}`, driverData);
 		const driver = response.data;
-		toastr.success(`Motorista ${driver.name} atualizado com sucesso.`, '');
+		handleToast.success(`Motorista ${driver.name} atualizado com sucesso.`);
 		dispatch(setLoadingTo(false));
 		return dispatch(setUpdateDriver(driver));
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(setLoadingTo(false));
 	}
 }

@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { firebaseAuth } from 'config/firebase';
 import { setBearerTokenToAuthorizationHeaders } from 'services/api';
 import { handleError } from 'utils/errors';
@@ -26,7 +26,7 @@ export const handleSession = (): IThunkAction => async (dispatch) => {
 			return dispatch(setLoadingSessionTo(false));
 		} catch (err) {
 			const errorMessage = handleError.generateMessage(err);
-			toastr.error(errorMessage, '');
+			handleToast.error(errorMessage);
 			return dispatch(handleLogout());
 		}
 	});

@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { Driver } from 'models/Driver';
 import { IRootState } from 'store/store';
 import { IDriversAction } from 'store/types/drivers';
@@ -23,7 +23,7 @@ export const handleGetDrivers = (): IThunkAction => async (dispatch, getState) =
 		return dispatch(setLoadingTo(false));
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(setLoadingTo(false));
 	}
 }

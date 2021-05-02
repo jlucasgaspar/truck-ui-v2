@@ -1,5 +1,5 @@
 import { ThunkAction } from 'redux-thunk';
-import { toastr } from 'react-redux-toastr';
+import { handleToast } from 'utils/toast';
 import { Company, ICompany } from 'models/Company';
 import { api } from 'services/api';
 import { storageProvider } from 'services/storage';
@@ -31,11 +31,11 @@ export const handleCreateCompany = (values: IParams): IThunkAction => async (dis
 		}
 
 		if (validatedIE.error || validatedCnpj.error || cpfValidated.error || validatedPhone.error || comercial_phone?.error) {
-			if (validatedIE.error) toastr.error(validatedIE.error, '')
-			if (validatedCnpj.error) toastr.error(validatedCnpj.error, '')
-			if (cpfValidated.error) toastr.error(cpfValidated.error, '')
-			if (validatedPhone.error) toastr.error(validatedPhone.error, '')
-			if (comercial_phone?.error) toastr.error(comercial_phone.error, '')
+			if (validatedIE.error) handleToast.error(validatedIE.error);
+			if (validatedCnpj.error) handleToast.error(validatedCnpj.error);
+			if (cpfValidated.error) handleToast.error(cpfValidated.error);
+			if (validatedPhone.error) handleToast.error(validatedPhone.error);
+			if (comercial_phone?.error) handleToast.error(comercial_phone.error);
 			return setLoadingTo(false);
 		}
 
@@ -69,10 +69,10 @@ export const handleCreateCompany = (values: IParams): IThunkAction => async (dis
 		dispatch(setLoadingTo(false));
 		dispatch(setCompany(company));
 		dispatch(setUser({ ...userState.user, company_id: company.id }));
-		return toastr.success(`Empresa ${values.nome_fantasia} criada com sucesso.`, '');
+		return handleToast.success(`Empresa ${values.nome_fantasia} criada com sucesso.`);
 	} catch (err) {
 		const errorMessage = handleError.generateMessage(err);
-		toastr.error(errorMessage, '');
+		handleToast.error(errorMessage);
 		return dispatch(setLoadingTo(false));
 	}
 }
