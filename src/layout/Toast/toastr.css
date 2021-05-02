@@ -1,0 +1,13 @@
+.rrt-holder {
+  width: 50px !important;
+}
+.rrt-text {
+  margin-left: -30px !important;
+}
+/* .close-toastr {
+  width: 8% !important;
+} */
+.toastr-icon {
+  width: 25px !important;
+  height: 25px !important;
+}

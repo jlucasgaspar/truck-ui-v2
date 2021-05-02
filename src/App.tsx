@@ -1,9 +1,12 @@
 import { FC } from 'react';
-import { LoginPage } from 'pages/Users';
-import { ThemeProvider } from 'components/_shared/ThemeProvider';
+import { ThemeProvider } from 'layout/Theme';
+import { ReduxProvider } from 'store';
+import { RootRouter } from 'router';
 
 export const App: FC = () => (
-  <ThemeProvider>
-    <LoginPage />
-  </ThemeProvider>
+  <ReduxProvider>
+    <ThemeProvider>
+      <RootRouter />
+    </ThemeProvider>
+  </ReduxProvider>
 );

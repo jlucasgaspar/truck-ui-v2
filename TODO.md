@@ -1,0 +1,1 @@
+[ ] Passar o handleToast em todos os redux
