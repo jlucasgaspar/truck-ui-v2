@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { IUser } from 'models/User';
 import { IRootState } from 'store/store';
 import { handleSignUp } from 'store/actions/session';
-import { Form } from 'components/_shared/Form';
 import { Input } from 'components/_shared/Inputs';
 import { OrangeButton } from 'components/_shared/Buttons';
 import { resolver } from './validationResolver';
@@ -21,7 +20,7 @@ export const SignupForm: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Form className={styles.form} onSubmit={handleSubmit(handleSignup)}>
+    <form noValidate className={styles.form} onSubmit={handleSubmit(handleSignup)}>
       <Input
         {...register("name")}
         name="name"
@@ -72,6 +71,6 @@ export const SignupForm: React.FC = () => {
       />
 
       <OrangeButton text="Cadastrar" loading={loading} className={styles.submit} />
-    </Form>
+    </form>
   );
 }

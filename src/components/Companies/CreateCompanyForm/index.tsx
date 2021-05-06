@@ -6,7 +6,6 @@ import { ICompany } from 'models/Company';
 import { handleCreateCompany } from 'store/actions/company';
 import { IRootState } from 'store/store';
 import { brazilianStates } from 'utils/constants'
-import { Form } from 'components/_shared/Form';
 import { Input } from 'components/_shared/Inputs';
 import { OrangeButton } from 'components/_shared/Buttons';
 import { resolver } from './validationResolver';
@@ -23,7 +22,7 @@ export const CreateCompanyForm: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Form onSubmit={handleSubmit(handleSubmitCreateCompany)}>
+    <form noValidate onSubmit={handleSubmit(handleSubmitCreateCompany)}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Input
@@ -155,7 +154,11 @@ export const CreateCompanyForm: React.FC = () => {
         </Grid>
       </Grid>
 
-      <OrangeButton text="Cadastrar empresa" className={styles.button} loading={loading} />
-    </Form>
+      <OrangeButton
+        text="Cadastrar empresa"
+        className={styles.button}
+        loading={loading}
+      />
+    </form>
   );
 }

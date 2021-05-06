@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { Drawer, IconButton, ListItem, ListItemIcon, ListItemText, useTheme } from '@material-ui/core';
+import { ChevronLeft, ChevronRight } from '@material-ui/icons';
 import clsx from 'clsx';
-import { Drawer, Collapse, List, IconButton, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { ExpandLess, ExpandMore, ChevronLeft, ChevronRight } from '@material-ui/icons';
-import { useTheme } from '@material-ui/core/styles';
 import { useStyles } from './styles';
 
 type ISidebarProps = {
@@ -12,14 +12,16 @@ type ISidebarProps = {
   setMenuItems: any;
 }
 
-export const Sidebar: React.FC<ISidebarProps> = ({ sidebarIsOpen, setSidebarIsOpen, menuItems, setMenuItems }) => {
+export const Sidebar: React.FC<ISidebarProps> = (
+  { sidebarIsOpen, setSidebarIsOpen, menuItems, setMenuItems }
+) => {
   const style = useStyles();
   const theme = useTheme();
 
-  const handleOpenMenuItem = useCallback((clickedItem: any) => {
+  const handleSelectMenuItem = useCallback((clickedItem: any) => {
     const newMenuItems = menuItems.map((item: any) => {
-      if (item.id === clickedItem.id) return { ...item, isOpen: !clickedItem.isOpen };
-      else return { ...item, isOpen: false };
+      if (item.id === clickedItem.id) return { ...item, isSelected: true };
+      else return { ...item, isSelected: false };
     });
 
     return setMenuItems(newMenuItems);
@@ -27,7 +29,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ sidebarIsOpen, setSidebarIsOp
 
   const handleMouseLeave = useCallback(() => {
     setSidebarIsOpen(false);
-    return setMenuItems(menuItems.map((item: any) => ({ ...item, isOpen: false })));
+    return setMenuItems(menuItems.map((item: any) => ({ ...item, isSelected: false })));
   }, [setSidebarIsOpen, menuItems, setMenuItems]);
 
   return (
@@ -53,27 +55,22 @@ export const Sidebar: React.FC<ISidebarProps> = ({ sidebarIsOpen, setSidebarIsOp
       <div style={{ height: 25 }} />
 
       {menuItems.map((item: any) => (
-        <React.Fragment key={item.id}>
-          <ListItem button onClick={() => handleOpenMenuItem(item)} key={item.id}>
+        <Link to={item.link} className={style.link} key={item.id}>
+          <ListItem
+            className={item.isSelected ? style.strongOrange : undefined}
+            onClick={() => handleSelectMenuItem(item)}
+            key={item.id}
+            button
+          >
             <ListItemIcon>
-              <item.Icon className={item.isOpen ? style.iconStrong : style.icon} />
+              <item.Icon className={item.isSelected ? style.textBlack : undefined} />
             </ListItemIcon>
-            <ListItemText primary={item.title} className={item.isOpen ? style.iconStrong : undefined} />
-            {item.isOpen ? <ExpandLess /> : <ExpandMore />}
+            <ListItemText
+              primary={item.title}
+              className={item.isSelected ? style.textBlack : undefined}
+            />
           </ListItem>
-          <Collapse in={item.isOpen} timeout="auto">
-            <List component="div" disablePadding key={item.id}>
-              {item.submenu.map((subItem: any) => (
-                <ListItem button className={style.nested} key={subItem.text}>
-                  <ListItemIcon>
-                    <subItem.Icon className={item.isOpen ? style.iconStrong : style.icon} />
-                  </ListItemIcon>
-                  <ListItemText primary={subItem.text} className={item.isOpen ? style.iconStrong : undefined} />
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
-        </React.Fragment>
+        </Link>
       ))}
     </Drawer>
   );

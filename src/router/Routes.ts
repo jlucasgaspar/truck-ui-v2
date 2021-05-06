@@ -5,11 +5,9 @@ export enum Routes {
 	LOGOUT = '/logout',
 	RESET_PASSWORD = '/recuperar-senha',
 	HOME = '/home',
-	CTE_LIST = '/ctes',
-	CTE_NEW = '/cte/novo',
-	VEHICLE_LIST = '/veículos',
-	VEHICLE_NEW = '/veículo/novo',
-	DRIVER_LIST = '/motoristas',
-	DRIVER_NEW = '/motorista/novo',
+	CTES = '/ctes',
+	VEHICLES = '/veículos',
+	DRIVERS = '/motoristas',
+	PARTNERS = '/parceiros',
 	CREATE_COMPANY = '/finalizar-cadastro' //User que acabou de se cadastrar e não tem empresa salva
 }

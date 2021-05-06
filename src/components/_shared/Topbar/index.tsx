@@ -15,15 +15,15 @@ type ITopbarProps = {
 }
 
 export const Topbar: React.FC<ITopbarProps> = ({ setSidebarIsOpen, sidebarIsOpen, menuItems, setMenuItems }) => {
-  const classes = useStyles();
+  const { company } = useSelector((state: IRootState) => state.companyState);
+  const { user } = useSelector((state: IRootState) => state.userState);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { user } = useSelector((state: IRootState) => state.userState);
-  const { company } = useSelector((state: IRootState) => state.companyState);
+  const classes = useStyles();
 
   const handleMenuIconClick = useCallback(() => {
     setSidebarIsOpen(!sidebarIsOpen);
-    const newMenuItems = menuItems.map((item: any) => ({ ...item, isOpen: false }));
+    const newMenuItems = menuItems.map((item: any) => ({ ...item, isSelected: false }));
     setMenuItems(newMenuItems);
   }, [sidebarIsOpen, menuItems, setSidebarIsOpen, setMenuItems]);
 

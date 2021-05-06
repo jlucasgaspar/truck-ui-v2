@@ -1,52 +1,35 @@
 import { Routes } from 'router/Routes';
 import {
-  AllInboxTwoTone,
-  AddToPhotosOutlined,
-  BusinessCenterTwoTone,
-  ListAltOutlined,
-  ContactsTwoTone,
-  LocalShippingTwoTone,
+  AllInboxTwoTone, BusinessCenterTwoTone, ContactsTwoTone, LocalShippingTwoTone
 } from '@material-ui/icons';
 
 export const menuItems = [
   {
     id: 'cte',
-    isOpen: false,
     title: 'CTE',
-    Icon: AllInboxTwoTone,
-    submenu: [
-      { link: Routes.CTE_NEW, Icon: AddToPhotosOutlined, text: 'Novo CTE' },
-      { link: Routes.CTE_LIST, Icon: ListAltOutlined, text: 'Listar CTEs' }
-    ]
+    isSelected: false,
+    link: Routes.CTES,
+    Icon: AllInboxTwoTone
   },
   {
     id: 'parceiros',
     title: 'Parceiros',
-    isOpen: false,
-    Icon: BusinessCenterTwoTone,
-    submenu: [
-      { link: Routes.CTE_NEW, Icon: AddToPhotosOutlined, text: 'Novo Parceiro' },
-      { link: Routes.CTE_LIST, Icon: ListAltOutlined, text: 'Listar Parceiros' }
-    ]
+    isSelected: false,
+    link: Routes.PARTNERS,
+    Icon: BusinessCenterTwoTone
   },
   {
     id: 'motoristas',
     title: 'Motoristas',
-    isOpen: false,
-    Icon: ContactsTwoTone,
-    submenu: [
-      { link: Routes.DRIVER_NEW, Icon: AddToPhotosOutlined, text: 'Novo Motorista' },
-      { link: Routes.DRIVER_LIST, Icon: ListAltOutlined, text: 'Listar Motoristas' }
-    ]
+    isSelected: false,
+    link: Routes.DRIVERS,
+    Icon: ContactsTwoTone
   },
   {
     id: 'veiculos',
     title: 'Veículos',
-    isOpen: false,
-    Icon: LocalShippingTwoTone,
-    submenu: [
-      { link: Routes.VEHICLE_NEW, Icon: AddToPhotosOutlined, text: 'Novo Veículo' },
-      { link: Routes.VEHICLE_LIST, Icon: ListAltOutlined, text: 'Listar Veículos' }
-    ]
+    isSelected: false,
+    link: Routes.VEHICLES,
+    Icon: LocalShippingTwoTone
   }
 ];

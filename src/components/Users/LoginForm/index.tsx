@@ -4,7 +4,6 @@ import { IUser } from 'models/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from 'store/store';
 import { handleLogin } from 'store/actions/session';
-import { Form } from 'components/_shared/Form';
 import { Input } from 'components/_shared/Inputs';
 import { OrangeButton } from 'components/_shared/Buttons';
 import { resolver } from './validationResolver';
@@ -21,7 +20,7 @@ export const LoginForm: React.FC = () => {
   }, [dispatch]);
   
   return (
-    <Form className={styles.form} onSubmit={handleSubmit(handleLoginSubmit)}>
+    <form noValidate className={styles.form} onSubmit={handleSubmit(handleLoginSubmit)}>
       <Input
         {...register("email")}
         name="email"
@@ -42,6 +41,6 @@ export const LoginForm: React.FC = () => {
       />
 
       <OrangeButton text="Login" loading={loading} className={styles.submit} />
-    </Form>
+    </form>
   );
 }

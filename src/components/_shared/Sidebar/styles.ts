@@ -1,6 +1,7 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, darken } from '@material-ui/core';
 
 const drawerWidth = 240;
+const backgroundOrange = '#FA8C16'
 
 export const useStyles = makeStyles(theme => ({
     drawer: {
@@ -14,7 +15,7 @@ export const useStyles = makeStyles(theme => ({
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen
       }),
-      backgroundColor: '#FA8C16',
+      backgroundColor: backgroundOrange,
       color: '#151515',
       boxShadow: '0px 0px 5px 2px rgba(0,0,0,0.2)',
       borderRight: '1px solid grey'
@@ -30,14 +31,18 @@ export const useStyles = makeStyles(theme => ({
         width: theme.spacing(9) + 1
       }
     },
-    nested: {
-      paddingLeft: theme.spacing(4)
+    link: {
+      textDecoration: 'none',
+      color: 'inherit',
+      '& :hover': {
+        color: '#000'
+      }
     },
-    icon: {
-      color: '#222'
+    textBlack: {
+      color: '#111'
     },
-    iconStrong: {
-      color: '#000'
+    strongOrange: {
+      backgroundColor: darken(backgroundOrange, 0.1)
     },
     toolbar: {
       display: 'flex',

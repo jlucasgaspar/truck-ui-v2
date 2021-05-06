@@ -6,7 +6,7 @@ import 'layout/css/toastr.css'; // overriding some styles of react-redux-toastr;
 
 export const ReduxProvider: React.FC = ({ children }) => (
   <Provider store={store}>
-    <ReduxToastr /*timeOut={10000000000}*/ transitionIn="fadeIn" transitionOut="fadeOut" preventDuplicates />
+    <ReduxToastr transitionIn="fadeIn" transitionOut="fadeOut" preventDuplicates />
     {children}
   </Provider>
 );
