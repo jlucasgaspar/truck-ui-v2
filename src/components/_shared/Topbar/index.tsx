@@ -1,6 +1,10 @@
 import { useCallback, useState } from 'react';
-import { Menu, MenuItem, IconButton, Typography, Toolbar, AppBar } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { Menu, MenuItem, IconButton, Toolbar, AppBar, Typography, Hidden } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle } from '@material-ui/icons';
+import { isEmpty } from 'lodash';
+import { IRootState } from 'store/store';
+import { logoImage } from 'assets/images';
 import { useStyles } from './styles';
 
 type ITopbarProps = {
@@ -14,10 +18,13 @@ export const Topbar: React.FC<ITopbarProps> = ({ setSidebarIsOpen, sidebarIsOpen
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const { user } = useSelector((state: IRootState) => state.userState);
+  const { company } = useSelector((state: IRootState) => state.companyState);
 
   const handleMenuIconClick = useCallback(() => {
     setSidebarIsOpen(!sidebarIsOpen);
-    setMenuItems(menuItems.map((item: any) => ({ ...item, isOpen: false })));
+    const newMenuItems = menuItems.map((item: any) => ({ ...item, isOpen: false }));
+    setMenuItems(newMenuItems);
   }, [sidebarIsOpen, menuItems, setSidebarIsOpen, setMenuItems]);
 
   return (
@@ -26,9 +33,23 @@ export const Topbar: React.FC<ITopbarProps> = ({ setSidebarIsOpen, sidebarIsOpen
         <IconButton edge="start" className={classes.menuButton} color="inherit" onClick={handleMenuIconClick}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
-          Photos
-        </Typography>
+
+        <img src={logoImage} alt="Truckify Logo" className={classes.logo} />
+
+        <Hidden smDown>
+          <Typography>
+            {isEmpty(user) && 'Carregando... '}
+
+            {!isEmpty(user) && (
+              user.name ? user.name : 'Usuário'
+            )}
+
+            {!isEmpty(user) && (
+              company.nome_fantasia ? `- ${company.nome_fantasia}` : '- Sem empresa'
+            )}
+          </Typography>
+        </Hidden>
+
         <div>
           <IconButton onClick={event => setAnchorEl(event.currentTarget)} color="inherit">
             <AccountCircle />

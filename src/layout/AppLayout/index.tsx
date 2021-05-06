@@ -11,9 +11,19 @@ export const AppLayout: React.FC = ({ children }) => {
 
   return (
     <>
-      <Topbar setSidebarIsOpen={setSidebarIsOpen} menuItems={menuItems} setMenuItems={setMenuItems} sidebarIsOpen={sidebarIsOpen} />
+      <Topbar
+        setSidebarIsOpen={setSidebarIsOpen}
+        menuItems={menuItems}
+        setMenuItems={setMenuItems}
+        sidebarIsOpen={sidebarIsOpen}
+      />
       <div className={style.root}>
-        <Sidebar sidebarIsOpen={sidebarIsOpen} setSidebarIsOpen={setSidebarIsOpen} menuItems={menuItems} setMenuItems={setMenuItems} />
+        <Sidebar
+          sidebarIsOpen={sidebarIsOpen}
+          setSidebarIsOpen={setSidebarIsOpen}
+          menuItems={menuItems}
+          setMenuItems={setMenuItems}
+        />
         <main className={style.content}>
           <div className={style.toolbar} />
           {children}

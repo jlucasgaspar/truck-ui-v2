@@ -1,6 +1,8 @@
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { IUser } from 'models/User';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from 'store/store';
 import { handleLogin } from 'store/actions/session';
 import { Form } from 'components/_shared/Form';
 import { Input } from 'components/_shared/Inputs';
@@ -10,10 +12,13 @@ import { useStyles } from './styles';
 
 export const LoginForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver });
+  const { loading } = useSelector((state: IRootState) => state.loadingState);
   const dispatch = useDispatch();
   const styles = useStyles();
 
-  const handleLoginSubmit = (data: IUser.FormFields.Login) => dispatch(handleLogin(data));
+  const handleLoginSubmit = useCallback((data: IUser.FormFields.Login) => {
+    dispatch(handleLogin(data));
+  }, [dispatch]);
   
   return (
     <Form className={styles.form} onSubmit={handleSubmit(handleLoginSubmit)}>
@@ -23,7 +28,7 @@ export const LoginForm: React.FC = () => {
         label="E-mail"
         placeholder="Insira seu e-mail"
         errors={errors}
-        //loading
+        loading={loading}
       />
 
       <Input
@@ -33,10 +38,10 @@ export const LoginForm: React.FC = () => {
         type="password"
         placeholder="Insira sua senha"
         errors={errors}
-        //loading
+        loading={loading}
       />
 
-      <OrangeButton text="Login" loading={false} className={styles.submit} />
+      <OrangeButton text="Login" loading={loading} className={styles.submit} />
     </Form>
   );
 }

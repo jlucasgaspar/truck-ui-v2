@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { IUser } from 'models/User';
@@ -15,7 +16,9 @@ export const SignupForm: React.FC = () => {
   const dispatch = useDispatch();
   const styles = useStyles();
 
-  const handleSignup = (data: IUser.FormFields.SignUp) => dispatch(handleSignUp(data));
+  const handleSignup = useCallback((data: IUser.FormFields.SignUp) => {
+    dispatch(handleSignUp(data));
+  }, [dispatch]);
 
   return (
     <Form className={styles.form} onSubmit={handleSubmit(handleSignup)}>
@@ -68,7 +71,7 @@ export const SignupForm: React.FC = () => {
         loading={loading}
       />
 
-      <OrangeButton text="Cadastrar" loading={false} className={styles.submit} />
+      <OrangeButton text="Cadastrar" loading={loading} className={styles.submit} />
     </Form>
   );
 }

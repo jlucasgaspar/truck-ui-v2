@@ -1,13 +1,22 @@
+import { useSelector } from 'react-redux';
+import { IRootState } from 'store/store';
 import { handleToast } from 'utils/toast';
 
 export const HomePage: React.FC = () => {
-  const msg = 'o motorista X foi adicionado o motorista X ta X foi adicionado.'
+  const { userState, companyState } = useSelector((state: IRootState) => state);
+  const msg = 'Parabens! Voce foi adicionado no APP Truckify, comece a usar agora mesmo'
+
   return (
     <>
-      <h1>Oiii</h1>
       <button onClick={() => handleToast.error(msg)}>
         Testar
-    </button>
+      </button>
+      <br />
+      {JSON.stringify(userState)}
+      <br />
+      <hr />
+      <br />
+      {JSON.stringify(companyState)}
     </>
   );
 }

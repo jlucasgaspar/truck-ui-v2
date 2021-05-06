@@ -17,10 +17,12 @@ export const Sidebar: React.FC<ISidebarProps> = ({ sidebarIsOpen, setSidebarIsOp
   const theme = useTheme();
 
   const handleOpenMenuItem = useCallback((clickedItem: any) => {
-    return setMenuItems(menuItems.map((item: any) => {
+    const newMenuItems = menuItems.map((item: any) => {
       if (item.id === clickedItem.id) return { ...item, isOpen: !clickedItem.isOpen };
       else return { ...item, isOpen: false };
-    }));
+    });
+
+    return setMenuItems(newMenuItems);
   }, [menuItems, setMenuItems]);
 
   const handleMouseLeave = useCallback(() => {

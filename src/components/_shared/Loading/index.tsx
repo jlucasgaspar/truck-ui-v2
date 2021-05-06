@@ -10,8 +10,9 @@ export const Loading: React.FC<ILoadingProps> = ({ text }) => {
 
   return (
     <div className={styles.root}>
-      <CircularProgress size={30} color="secondary" />
-      <Typography variant="h3">{text}</Typography>
+      <CircularProgress size={80} />
+      <div style={{ height: 10 }} />
+      <Typography variant="h4">{text}</Typography>
     </div>
   );
 }

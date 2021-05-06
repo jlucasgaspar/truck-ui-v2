@@ -18,11 +18,7 @@ export const handleSession = (): IThunkAction => async (dispatch) => {
 			dispatch(setLoadingSessionTo(true));
 			const token = await user.getIdToken();
 			setBearerTokenToAuthorizationHeaders(token);
-
-			// TODO remover isso dps e manter só o initSession
-			// dispatch(initSession());
-			const { token: tokenConfirmation, authTime, expirationTime, issuedAtTime } = await user.getIdTokenResult();
-			dispatch(setInitSession({ token, tokenConfirmation, authTime, expirationTime, issuedAtTime }));
+			dispatch(setInitSession());
 			return dispatch(setLoadingSessionTo(false));
 		} catch (err) {
 			const errorMessage = handleError.generateMessage(err);
