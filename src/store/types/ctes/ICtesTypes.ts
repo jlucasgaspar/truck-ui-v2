@@ -3,12 +3,12 @@ import { IStep } from './stepper';
 
 // State
 export type ICtesState = {
-    steps: IStep[]
+	steps: IStep[]
 }
 
 // Actions
 type SetCtesStepper = {
-    type: typeof CtesActionTypes.SET_CTES_STEPPER;
-    payload: IStep[];
+	type: typeof CtesActionTypes.SET_CTES_STEPPER;
+	payload: IStep[];
 }
 export type ICtesAction = SetCtesStepper;
