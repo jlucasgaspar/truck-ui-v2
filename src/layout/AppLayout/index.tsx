@@ -1,34 +1,25 @@
-import { useState } from 'react'
+import { useState, Fragment, useCallback } from 'react'
 import { Topbar } from 'components/_shared/Topbar';
 import { Sidebar } from 'components/_shared/Sidebar';
-import { menuItems as menuItemsArray } from 'components/_shared/Sidebar/menuItems';
 import { useStyles } from './styles';
 
 export const AppLayout: React.FC = ({ children }) => {
-  const [sidebarIsOpen, setSidebarIsOpen] = useState<boolean>(false);
-  const [menuItems, setMenuItems] = useState(menuItemsArray);
+  const [sidebarIsOpen, setSidebarOpen] = useState<boolean>(false);
   const style = useStyles();
+  
+  const closeSidebar = useCallback(() => setSidebarOpen(false), []);
+  const openSidebar = useCallback(() => setSidebarOpen(true), []);
 
   return (
-    <>
-      <Topbar
-        setSidebarIsOpen={setSidebarIsOpen}
-        menuItems={menuItems}
-        setMenuItems={setMenuItems}
-        sidebarIsOpen={sidebarIsOpen}
-      />
+    <Fragment>
+      <Topbar sidebarIsOpen={sidebarIsOpen} closeSidebar={closeSidebar} openSidebar={openSidebar} />
       <div className={style.root}>
-        <Sidebar
-          sidebarIsOpen={sidebarIsOpen}
-          setSidebarIsOpen={setSidebarIsOpen}
-          menuItems={menuItems}
-          setMenuItems={setMenuItems}
-        />
+        <Sidebar isOpen={sidebarIsOpen} closeSidebar={closeSidebar} openSidebar={openSidebar} />
         <main className={style.content}>
           <div className={style.toolbar} />
           {children}
         </main>
       </div>
-    </>
+    </Fragment>
   );
 }

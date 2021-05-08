@@ -28,7 +28,7 @@ export const useStyles = makeStyles(theme => ({
       overflowX: 'hidden',
       width: theme.spacing(7) + 1,
       [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1
+        width: theme.spacing(8) + 1
       }
     },
     link: {
@@ -43,6 +43,9 @@ export const useStyles = makeStyles(theme => ({
     },
     strongOrange: {
       backgroundColor: darken(backgroundOrange, 0.1)
+    },
+    marginTop:{
+      marginTop: 30
     },
     toolbar: {
       display: 'flex',

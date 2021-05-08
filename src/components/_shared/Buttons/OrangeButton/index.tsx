@@ -14,9 +14,6 @@ export const OrangeButton: React.FC<IButtonProps> = ({ text, type, loading, ...p
     variant="contained"
     {...props}
   >
-    {loading
-      ? <CircularProgress size={23} />
-      : text
-    }
+    {loading ? <CircularProgress size={23} /> : text}
   </Button>
 );

@@ -2,19 +2,22 @@ import { SessionActionTypes } from './SessionActionTypes';
 
 // State
 export type ISessionState = {
-    getSessionWasAlreadyCalled: boolean;
-    isAuthenticated: boolean;
+	isFirstFetch: boolean;
+	isAuthenticated: boolean;
 }
 
 // Actions
-type InitSession = {
-    type: typeof SessionActionTypes.INIT_SESSION;
+type Init = {
+	type: typeof SessionActionTypes.INIT_SESSION;
 }
-type FinishSession = {
-    type: typeof SessionActionTypes.FINISH_SESSION;
+
+type Finish = {
+	type: typeof SessionActionTypes.FINISH_SESSION;
 }
-type SetGetSessionWasAlreadyCalled = {
-    type: typeof SessionActionTypes.GET_SESSION_WAS_ALREADY_CALLED;
-    payload: boolean;
+
+type SetIsFirstFetch = {
+	type: typeof SessionActionTypes.IS_FIRST_FETCH;
+	payload: boolean;
 }
-export type ISessionActions = InitSession | FinishSession | SetGetSessionWasAlreadyCalled;
+
+export type ISessionActions = Init | Finish | SetIsFirstFetch;

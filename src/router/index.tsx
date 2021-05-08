@@ -1,25 +1,29 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { IRootState } from 'store/store';
-import { handleSession } from 'store/actions/session';
+import { useSelector } from 'react-redux';
+import { IRootState } from 'store';
+import { useHandleSessionToken } from 'hooks/session';
 import { Loading } from 'components/_shared/Loading';
 import { PublicRouter } from './PublicRouter';
-import { AppRouter } from './AppRouter';
+import { PrivateRouter } from './PrivateRouter';
 
 export const RootRouter: React.FC = () => {
 	const { isAuthenticated } = useSelector((state: IRootState) => state.sessionState);
-	const { loadingSession } = useSelector((state: IRootState) => state.loadingState);
-	const dispatch = useDispatch();
+	const { handleToken, isLoading } = useHandleSessionToken();
+	const [isFirstMount, setIsFirstMount] = useState(true);
 
 	useEffect(() => {
-		dispatch(handleSession());
-	}, [dispatch]);
+		const executeAsync = async () => await handleToken();
+		if (isFirstMount) {
+			executeAsync();
+			setIsFirstMount(false);
+		}
+	}, [handleToken, isFirstMount]);
 
-	if (loadingSession) return <Loading text="Aguarde um momento..." />;
+	if (isLoading) return <Loading text="Aguarde um momento..." />;
 	return (
 		<BrowserRouter>
-			{isAuthenticated ? <AppRouter /> : <PublicRouter />}
+			{isAuthenticated ? <PrivateRouter /> : <PublicRouter />}
 		</BrowserRouter>
 	);
 }

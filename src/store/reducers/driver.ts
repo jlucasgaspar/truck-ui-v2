@@ -1,16 +1,16 @@
 import { Driver } from 'models/Driver';
-import { DriversActionTypes, IDriversState, IDriversAction } from 'store/types/drivers';
+import { DriversActionTypes, IDriversState, IDriversAction } from 'store/types/driver';
 
 const initialState: IDriversState = {
-	getDriversWasAlreadyCalled: false,
+	isFirstFetch: true,
 	drivers: [],
 	currentDriver: {} as Driver
 }
 
 export const driverReducer = (state = initialState, action: IDriversAction): IDriversState => {
 	switch (action.type) {
-		case DriversActionTypes.GET_DRIVERS:
-			return { ...state, getDriversWasAlreadyCalled: true, drivers: action.payload }
+		case DriversActionTypes.SET_DRIVERS:
+			return { ...state, isFirstFetch: false, drivers: action.payload }
 
 		case DriversActionTypes.CREATE_DRIVER:
 			return { ...state, drivers: [action.payload, ...state.drivers] }

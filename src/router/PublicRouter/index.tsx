@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { LoginPage, SignupPage } from 'pages/Users';
+import { LoginPage, SignupPage } from 'pages/User';
 import { Routes } from '../Routes';
 
 export const PublicRouter: React.FC = () => (

@@ -1,5 +1,5 @@
 import { storage } from 'config/firebase';
-import { handleError } from 'utils/errors';
+import { handleError } from 'utils';
 
 export type ISaveFileResponse = {
 	fileError: string;

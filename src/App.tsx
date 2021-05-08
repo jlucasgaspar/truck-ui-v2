@@ -1,9 +1,8 @@
-import { FC } from 'react';
-import { ThemeProvider } from 'layout/Theme';
-import { ReduxProvider } from 'store';
 import { RootRouter } from 'router';
+import { ReduxProvider } from 'store';
+import { ThemeProvider } from 'layout/Theme';
 
-export const App: FC = () => (
+export const App: React.FC = () => (
   <ReduxProvider>
     <ThemeProvider>
       <RootRouter />

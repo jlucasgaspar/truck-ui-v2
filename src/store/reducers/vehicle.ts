@@ -1,5 +1,5 @@
 import { Vehicle } from 'models/Vehicle';
-import { IVehiclesAction, IVehiclesState, VehiclesActionTypes } from 'store/types/vehicles';
+import { IVehiclesAction, IVehiclesState, VehiclesActionTypes } from 'store/types/vehicle';
 
 const initialState: IVehiclesState = {
 	getVehiclesWasAlreadyCalled: false,
