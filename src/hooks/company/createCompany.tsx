@@ -44,7 +44,7 @@ export const useCreateCompany = () => {
 
       let logo_url = '';
       if (values.logo) {
-        const { url } = await storageProvider.saveFile(values.logo, 'companies');
+        const { url } = await storageProvider.saveFile(values.logo[0], 'companies');
         logo_url = url;
       }
 

@@ -18,6 +18,6 @@ export namespace IDriver {
 
     // Don't export these types below. Internal use only;
     type Timestamps = 'created_at' | 'updated_at';
-    type PhotoFile = { photo?: File; }
+    type PhotoFile = { photo?: FileList; }
     type ChangePhotoOption = { changePhoto: 'y' | 'n'; }
 };

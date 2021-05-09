@@ -1,19 +1,19 @@
 import { useCallback, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IDriver } from 'models/Driver';
-import { OrangeButton, Input, UploadInput } from 'components/_shared';
+import { OrangeButton, Input, FileInput } from 'components/_shared';
 import { resolver } from './validationResolver';
 import { useStyles } from './styles';
 
+type IForm = IDriver.FormFields.Create;
+
 export const CreateDriverForm: React.FC = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm({ resolver });
+  const { register, handleSubmit, control, setValue, formState: { errors } } = useForm<IForm>({ resolver });
   const styles = useStyles();
 
-  const handleCreateDriver = useCallback(async (data: IDriver.FormFields.Create) => {
-    setLoading(true);
+  const handleCreateDriver = useCallback(async (data: IForm) => {
     return console.log(data);
-    setLoading(false);
   }, []);
 
   return (
@@ -47,12 +47,12 @@ export const CreateDriverForm: React.FC = () => {
         loading={isLoading}
       />
 
-      <UploadInput
-        {...register("photo")}
-        name="photo"
+      <FileInput
         text="Foto do motorista (opcional)"
+        name="photo"
         loading={isLoading}
-        formValues={getValues()}
+        control={control}
+        setValue={setValue}
       />
 
       <OrangeButton
@@ -63,3 +63,4 @@ export const CreateDriverForm: React.FC = () => {
     </form>
   );
 }
+

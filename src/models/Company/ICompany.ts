@@ -11,7 +11,7 @@ export namespace ICompany {
 
     // Don't export these types below. Internal use only;
     type Timestamps = 'created_at'|'updated_at';
-    type Logo = { logo?: File; }
+    type Logo = { logo?: FileList; }
     type AddressOptionsFields = {
         addressComplement: string;
         addressNumber: number;

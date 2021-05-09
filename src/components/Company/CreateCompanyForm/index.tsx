@@ -3,18 +3,20 @@ import { useForm } from 'react-hook-form';
 import { Grid, MenuItem } from '@material-ui/core';
 import { ICompany } from 'models/Company';
 import { useCreateCompany } from 'hooks/company';
-import { OrangeButton, Input } from 'components/_shared';
+import { OrangeButton, Input, FileInput } from 'components/_shared';
 import { brazilianStates } from './brazilianStates';
 import { resolver } from './validationResolver';
 import { useStyles } from './styles';
 
+type IForm = ICompany.FormFields.Create;
+
 export const CreateCompanyForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver });
+  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<IForm>({ resolver });
   const { createCompany, isLoading } = useCreateCompany();
   const styles = useStyles();
 
-  const handleCreateCompany = useCallback(async (data: ICompany.FormFields.Create) => {
-    await createCompany(data)
+  const handleCreateCompany = useCallback(async (data: IForm) => {
+    await createCompany(data);
   }, [createCompany]);
 
   return (
@@ -67,7 +69,7 @@ export const CreateCompanyForm: React.FC = () => {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Input
-            {...register("address")}
+            {...register("addressStreet")}
             name="address"
             label="Endereço da empresa"
             placeholder="Insira o Endereço da empresa"
@@ -109,7 +111,7 @@ export const CreateCompanyForm: React.FC = () => {
             select
             children={brazilianStates.map(state => (
               <MenuItem key={state.id} value={state.value || ''}>
-                {state.name}
+                {state.name}redux
               </MenuItem>
             ))}
           />
@@ -149,6 +151,14 @@ export const CreateCompanyForm: React.FC = () => {
           />
         </Grid>
       </Grid>
+
+      <FileInput
+        text="Logo da empresa (opcional)"
+        name="logo"
+        loading={isLoading}
+        control={control}
+        setValue={setValue}
+      />
 
       <OrangeButton
         text="Cadastrar empresa"
