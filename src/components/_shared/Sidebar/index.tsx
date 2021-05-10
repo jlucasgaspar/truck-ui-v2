@@ -1,9 +1,9 @@
-import { useCallback, useEffect } from 'react';
-import { Drawer, IconButton, useTheme } from '@material-ui/core';
-import { ChevronLeft, ChevronRight } from '@material-ui/icons';
-import clsx from 'clsx';
-import { useStyles } from './styles';
-import { MenuItems } from './MenuItems';
+import { useCallback, useEffect } from "react";
+import { Drawer, IconButton, useTheme } from "@material-ui/core";
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+import clsx from "clsx";
+import { useStyles } from "./styles";
+import { MenuItems } from "./MenuItems";
 
 type ISidebarProps = {
   isOpen: boolean;
@@ -39,7 +39,7 @@ export const Sidebar: React.FC<ISidebarProps> = ({ isOpen, closeSidebar, openSid
     >
       <div className={style.toolbar}>
         <IconButton onClick={closeSidebar}>
-          {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
+          {theme.direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
         </IconButton>
       </div>
 

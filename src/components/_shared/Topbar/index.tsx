@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Menu, MenuItem, IconButton, Toolbar, AppBar, Typography, Hidden } from '@material-ui/core';
-import { Menu as MenuIcon, AccountCircle } from '@material-ui/icons';
-import { isEmpty } from 'lodash';
-import { IRootState } from 'store';
-import { logoImage } from 'assets/images';
-import { useStyles } from './styles';
+import { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { Menu, MenuItem, IconButton, Toolbar, AppBar, Typography, Hidden } from "@material-ui/core";
+import { Menu as MenuIcon, AccountCircle } from "@material-ui/icons";
+import { isEmpty } from "lodash";
+import { IRootState } from "store";
+import { logoImage } from "assets/images";
+import { useStyles } from "./styles";
 
 type ITopbarProps = {
   sidebarIsOpen: boolean;
@@ -36,14 +36,14 @@ export const Topbar: React.FC<ITopbarProps> = ({ sidebarIsOpen, closeSidebar, op
 
         <Hidden smDown>
           <Typography>
-            {isEmpty(user) && 'Carregando... '}
+            {isEmpty(user) && "Carregando... "}
 
             {!isEmpty(user) && (
-              user.name ? user.name : 'Usuário'
+              user.name ? user.name : "Usuário"
             )}
 
             {!isEmpty(user) && (
-              company.nome_fantasia ? `- ${company.nome_fantasia}` : '- Sem empresa'
+              company.nome_fantasia ? `- ${company.nome_fantasia}` : "- Sem empresa"
             )}
           </Typography>
         </Hidden>
@@ -57,8 +57,8 @@ export const Topbar: React.FC<ITopbarProps> = ({ sidebarIsOpen, closeSidebar, op
             id="menu-appbar"
             open={open}
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
             onClose={() => setAnchorEl(null)}
           >
             <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>

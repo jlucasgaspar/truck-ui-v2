@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { menuItemsList } from './menuItemsList';
-import { useStyles } from './styles';
+import { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { menuItemsList } from "./menuItemsList";
+import { useStyles } from "./styles";
 
 type ISidebarProps = {
   sidebarIsOpen: boolean;
 }
 
 export const MenuItems: React.FC<ISidebarProps> = ({ sidebarIsOpen }) => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState<string>('');
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string>("");
   const style = useStyles();
 
   const handleClassName = useCallback((className: string, itemId: string) => {

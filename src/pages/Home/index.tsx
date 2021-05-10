@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
-import { IRootState } from 'store';
-import { useToast } from 'hooks/toast';
+import { useSelector } from "react-redux";
+import { IRootState } from "store";
+import { useToast } from "hooks/toast";
 
 export const HomePage: React.FC = () => {
   const { userState, companyState } = useSelector((state: IRootState) => state);

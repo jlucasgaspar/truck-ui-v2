@@ -1,5 +1,5 @@
-import { CircularProgress, Typography } from '@material-ui/core';
-import { useStyles } from './styles';
+import { CircularProgress, Typography } from "@material-ui/core";
+import { useStyles } from "./styles";
 
 type ILoadingProps = {
   text: string;

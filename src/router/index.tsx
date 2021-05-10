@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { IRootState } from 'store';
-import { useHandleSessionToken } from 'hooks/session';
-import { Loading } from 'components/_shared/Loading';
-import { PublicRouter } from './PublicRouter';
-import { PrivateRouter } from './PrivateRouter';
+import { useEffect, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IRootState } from "store";
+import { useHandleSessionToken } from "hooks/session";
+import { Loading } from "components/_shared";
+import { PublicRouter } from "./PublicRouter";
+import { PrivateRouter } from "./PrivateRouter";
 
 export const RootRouter: React.FC = () => {
 	const { isAuthenticated } = useSelector((state: IRootState) => state.sessionState);

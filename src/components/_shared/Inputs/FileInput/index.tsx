@@ -1,7 +1,7 @@
-import { Control, Controller, UseFormSetValue } from 'react-hook-form';
-import { FilesList } from './FilesList';
-import { Dropzone } from './Dropzone';
-import { useStyles } from './styles';
+import { Control, Controller, UseFormSetValue } from "react-hook-form";
+import { FilesList } from "./FilesList";
+import { Dropzone } from "./Dropzone";
+import { useStyles } from "./styles";
 
 type IFileInputProps = {
   control: Control<any>;

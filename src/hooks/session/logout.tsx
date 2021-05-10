@@ -1,8 +1,8 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { firebaseAuth } from 'config/firebase';
-import { setBearerTokenToAuthorizationHeaders } from 'services';
-import { sessionActions } from 'store/actions';
+import { setBearerTokenToAuthorizationHeaders } from "services";
+import { sessionActions } from "store/actions";
 
 export const useLogout = () => {
   const [isLoading, setLoading] = useState<boolean>(false);

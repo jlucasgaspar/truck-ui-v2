@@ -1,6 +1,6 @@
-import { Fragment, useCallback, useState } from 'react';
-import { CreateDriverForm } from 'components/Driver';
-import { OrangeButton, Modal } from 'components/_shared';
+import { Fragment, useCallback, useState } from "react";
+import { CreateDriverForm } from "components/Driver";
+import { OrangeButton, Modal } from "components/_shared";
 
 export const CreateDriverButton: React.FC = () => {
   const [modalIsOpen, setOpenModal] = useState<boolean>(false);

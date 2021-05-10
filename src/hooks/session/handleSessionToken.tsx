@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { firebaseAuth } from 'config/firebase';
-import { setBearerTokenToAuthorizationHeaders } from 'services';
-import { sessionActions } from 'store/actions';
-import { handleError } from 'utils';
-import { useToast } from '../toast';
+import { setBearerTokenToAuthorizationHeaders } from "services";
+import { sessionActions } from "store/actions";
+import { handleError } from "utils";
+import { useToast } from "../toast";
 
 export const useHandleSessionToken = () => {
   const [isLoading, setLoading] = useState<boolean>(true);

@@ -1,6 +1,6 @@
-import { Typography, Modal, Backdrop, Fade } from '@material-ui/core';
-import { CreateCompanyForm } from 'components/Company';
-import { useStyles } from './styles';
+import { Typography, Modal, Backdrop, Fade } from "@material-ui/core";
+import { CreateCompanyForm } from "components/Company";
+import { useStyles } from "./styles";
 
 export const UserWithoutCompanyPage: React.FC = () => {
   const styles = useStyles();

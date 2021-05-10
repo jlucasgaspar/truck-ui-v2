@@ -1,13 +1,13 @@
-import { useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Company, User } from 'models';
-import { api } from 'services';
-import { IRootState } from 'store';
-import { companyActions, userActions, sessionActions } from 'store/actions';
-import { handleError } from 'utils';
-import { useToast } from '../toast';
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Company, User } from "models";
+import { api, ApiEndpoints } from "services";
+import { IRootState } from "store";
+import { companyActions, userActions, sessionActions } from "store/actions";
+import { handleError } from "utils";
+import { useToast } from "../toast";
 
-type ISessionInfoResponse = { user: User; company?: Company; }
+type ISessionInfoResponse = { user: User.Model; company?: Company.Model; }
 
 export const useGetSessionInfo = () => {
   const { isFirstFetch } = useSelector((state: IRootState) => state.sessionState);
@@ -19,7 +19,7 @@ export const useGetSessionInfo = () => {
     try {
       if (isFirstFetch === false) return;
       setLoading(true);
-      const { data } = await api.get<ISessionInfoResponse>('/sessions');
+      const { data } = await api.get<ISessionInfoResponse>(ApiEndpoints.get.sessionData);
       dispatch(sessionActions.setIsFirstFetch(false));
       dispatch(userActions.setUser(data.user));
       if (data.company) dispatch(companyActions.setCompany(data.company));

@@ -1,9 +1,9 @@
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles(theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -17,6 +17,6 @@ export const useStyles = makeStyles(theme => ({
   },
   logo: {
     width: 150,
-    marginRight: 'auto'
+    marginRight: "auto"
   }
 }));

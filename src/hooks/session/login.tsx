@@ -1,17 +1,17 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { IUser } from 'models/User';
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { User } from "models";
 import { firebaseAuth } from 'config/firebase';
-import { handleError } from 'utils';
-import { sessionActions } from 'store/actions';
-import { useToast } from '../toast';
+import { handleError } from "utils";
+import { sessionActions } from "store/actions";
+import { useToast } from "../toast";
 
 export const useLogin = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
-  const login = useCallback(async ({ email, password }: IUser.FormFields.Login) => {
+  const login = useCallback(async ({ email, password }: User.FormFields.Login) => {
     try {
       setLoading(true);
       const { user } = await firebaseAuth.signInWithEmailAndPassword(email, password);

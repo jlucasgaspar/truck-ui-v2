@@ -1,13 +1,13 @@
-import { Company } from 'models/Company';
-import { CompanyActionTypes, ICompanyActions, ICompanyState } from 'store/types/company';
+import { Company } from "models";
+import { CompanyActionsTypes, CompanyActions, CompanyState } from "store/types";
 
-const initialState: ICompanyState = {
-  company: {} as Company
+const initialState: CompanyState = {
+  company: {} as Company.Model
 }
 
-export const companyReducer = (state = initialState, action: ICompanyActions): ICompanyState => {
+export const companyReducer = (state = initialState, action: CompanyActions): CompanyState => {
   switch (action.type) {
-    case CompanyActionTypes.SET_COMPANY:
+    case CompanyActionsTypes.SET_COMPANY:
       return { ...state, company: action.payload }
 
     default:

@@ -1,17 +1,19 @@
-import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { IUser } from 'models/User';
-import { useSignup } from 'hooks/session';
-import { Input, OrangeButton } from 'components/_shared';
-import { resolver } from './validationResolver';
-import { useStyles } from './styles';
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { User } from "models";
+import { useSignup } from "hooks/session";
+import { Input, OrangeButton } from "components/_shared";
+import { resolver } from "./validationResolver";
+import { useStyles } from "./styles";
+
+type FormFields = User.FormFields.SignUp;
 
 export const SignupForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver });
+  const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({ resolver });
   const { isLoading, signUp } = useSignup();
   const styles = useStyles();
 
-  const handleSignup = useCallback(async (data: IUser.FormFields.SignUp) => {
+  const handleSignup = useCallback(async (data: FormFields) => {
     await signUp(data)
   }, [signUp]);
 
@@ -57,8 +59,8 @@ export const SignupForm: React.FC = () => {
       />
 
       <Input
-        {...register("passwordConfirmation")}
-        name="passwordConfirmation"
+        {...register("confirmPassword")}
+        name="confirmPassword"
         label="Confirme a senha"
         type="password"
         placeholder="Confirme a senha"

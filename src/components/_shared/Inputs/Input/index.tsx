@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import ReactInputMask from 'react-input-mask';
-import { TextField, TextFieldProps } from '@material-ui/core';
-import { DeepMap, FieldValues, FieldError } from 'react-hook-form';
+import { FC } from "react";
+import ReactInputMask from "react-input-mask";
+import { TextField, TextFieldProps } from "@material-ui/core";
+import { DeepMap, FieldValues, FieldError } from "react-hook-form";
 
 type IInputProps = TextFieldProps & {
   name: string;

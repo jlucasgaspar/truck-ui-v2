@@ -1,5 +1,0 @@
-export enum SessionActionTypes {
-	INIT_SESSION = 'INIT_SESSION',
-	FINISH_SESSION = 'FINISH_SESSION',
-	IS_FIRST_FETCH = 'IS_FIRST_FETCH'
-}

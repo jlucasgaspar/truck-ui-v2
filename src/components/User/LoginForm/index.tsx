@@ -1,17 +1,19 @@
-import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { IUser } from 'models/User';
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { User } from "models";
 import { useLogin } from 'hooks/session';
-import { Input, OrangeButton } from 'components/_shared';
-import { resolver } from './validationResolver';
-import { useStyles } from './styles';
+import { Input, OrangeButton } from "components/_shared";
+import { resolver } from "./validationResolver";
+import { useStyles } from "./styles";
+
+type FormFields = User.FormFields.Login;
 
 export const LoginForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver });
+  const { register, handleSubmit, formState: { errors } } = useForm<FormFields>({ resolver });
   const { login, isLoading } = useLogin();
   const styles = useStyles();
 
-  const handleLogin = useCallback(async (data: IUser.FormFields.Login) => {
+  const handleLogin = useCallback(async (data: FormFields) => {
     await login(data)
   }, [login]);
   

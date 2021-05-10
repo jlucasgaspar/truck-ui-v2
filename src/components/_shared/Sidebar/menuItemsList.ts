@@ -1,5 +1,5 @@
-import { AllInboxTwoTone, BusinessCenterTwoTone } from '@material-ui/icons';
-import { ContactsTwoTone, LocalShippingTwoTone } from '@material-ui/icons';
+import { AllInboxTwoTone, BusinessCenterTwoTone } from "@material-ui/icons";
+import { ContactsTwoTone, LocalShippingTwoTone } from "@material-ui/icons";
 import { Routes } from 'router/Routes';
 
 export const menuItemsList = [

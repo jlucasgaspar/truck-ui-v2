@@ -1,8 +1,8 @@
-import ReactDropzone from 'react-dropzone';
-import { ControllerRenderProps } from 'react-hook-form';
-import { Paper, CircularProgress } from '@material-ui/core';
-import { CloudUpload } from '@material-ui/icons';
-import { useStyles } from './styles';
+import ReactDropzone from "react-dropzone";
+import { ControllerRenderProps } from "react-hook-form";
+import { Paper, CircularProgress } from "@material-ui/core";
+import { CloudUpload } from "@material-ui/icons";
+import { useStyles } from "./styles";
 
 type IDropzone = {
   loading?: boolean;
@@ -21,7 +21,7 @@ export const Dropzone: React.FC<IDropzone> = ({ field, loading, name, text }) =>
           ? (
             <Paper variant="outlined" className={styles.rootLoading}>
               <CircularProgress className={styles.icon} />
-              <input {...getInputProps()} name={name} onBlur={field.onBlur} style={{ display: 'none' }} />
+              <input {...getInputProps()} name={name} onBlur={field.onBlur} style={{ display: "none" }} />
               <p>Carregando...</p>
             </Paper>
           )

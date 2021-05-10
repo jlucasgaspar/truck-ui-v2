@@ -1,19 +1,19 @@
-import { ISessionActions, ISessionState, SessionActionTypes, } from 'store/types/session';
+import { SessionActions, SessionState, SessionActionsTypes } from "store/types";
 
-const initialState: ISessionState = {
+const initialState: SessionState = {
 	isFirstFetch: true,
 	isAuthenticated: false
 }
 
-export const sessionReducer = (state = initialState, action: ISessionActions): ISessionState => {
+export const sessionReducer = (state = initialState, action: SessionActions): SessionState => {
 	switch (action.type) {
-		case SessionActionTypes.INIT_SESSION:
+		case SessionActionsTypes.INIT_SESSION:
 			return { ...state, isAuthenticated: true }
 
-		case SessionActionTypes.FINISH_SESSION:
+		case SessionActionsTypes.FINISH_SESSION:
 			return { ...state, isAuthenticated: false }
 
-		case SessionActionTypes.IS_FIRST_FETCH:
+		case SessionActionsTypes.IS_FIRST_FETCH:
 			return { ...state, isFirstFetch: action.payload }
 
 		default:

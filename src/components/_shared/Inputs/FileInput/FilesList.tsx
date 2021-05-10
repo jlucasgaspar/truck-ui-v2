@@ -1,8 +1,8 @@
-import { ControllerRenderProps, UseFormSetValue } from 'react-hook-form';
-import { List, ListItem, ListItemIcon, ListItemText, IconButton, CircularProgress } from '@material-ui/core';
-import { Delete, InsertDriveFile } from '@material-ui/icons';
-import { useStyles } from './styles';
-import { useCallback } from 'react';
+import { useCallback } from "react";
+import { ControllerRenderProps, UseFormSetValue } from "react-hook-form";
+import { List, ListItem, ListItemIcon, ListItemText, IconButton, CircularProgress } from "@material-ui/core";
+import { Delete, InsertDriveFile } from "@material-ui/icons";
+import { useStyles } from "./styles";
 
 type IFilesListProps = {
   name: string;

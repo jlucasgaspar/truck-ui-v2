@@ -1,13 +1,13 @@
-import { User } from 'models/User';
-import { IUserActions, IUserState, UserActionTypes } from 'store/types/user';
+import { User } from "models";
+import { UserActions, UserState, UserActionsTypes } from "store/types";
 
-const initialState: IUserState = {
-	user: {} as User
+const initialState: UserState = {
+	user: {} as User.Model
 }
 
-export const userReducer = (state = initialState, action: IUserActions): IUserState => {
+export const userReducer = (state = initialState, action: UserActions): UserState => {
 	switch (action.type) {
-		case UserActionTypes.SET_USER:
+		case UserActionsTypes.SET_USER:
 			return { ...state, user: action.payload }
 
 		default:

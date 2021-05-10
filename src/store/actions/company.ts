@@ -1,9 +1,9 @@
-import { CompanyActionTypes } from 'store/types/company';
-import { Company } from 'models/Company';
+import { Company } from "models";
+import { CompanyActionsTypes } from "store/types";
 
 class CompanyActions {
-  public setCompany = (company: Company) => ({
-    type: CompanyActionTypes.SET_COMPANY,
+  public setCompany = (company: Company.Model) => ({
+    type: CompanyActionsTypes.SET_COMPANY,
     payload: company
   });
 }

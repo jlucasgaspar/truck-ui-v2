@@ -1,7 +1,7 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { HomePage } from 'pages/Home';
-import { DriversPage } from 'pages/Driver';
-import { Routes } from '../Routes';
+import { Switch, Route, Redirect } from "react-router-dom";
+import { HomePage } from "pages/Home";
+import { DriversPage } from "pages/Driver";
+import { Routes } from "../Routes";
 
 export const AppRouter: React.FC = () => (
 	<Switch>

@@ -1,5 +1,5 @@
-import { storage } from 'config/firebase';
-import { handleError } from 'utils';
+import { storage } from "config/firebase";
+import { handleError } from "utils";
 
 export type ISaveFileResponse = {
 	fileError: string;
@@ -14,10 +14,10 @@ export class StorageProvider {
 			const path = `${collection}/${fileName}`;
 			await storage.ref(path).put(file);
 			const url = await storage.ref(path).getDownloadURL();
-			return { url, fileError: '' };
+			return { url, fileError: "" };
 		} catch (error) {
 			const errorMessage = handleError.generateMessage(error);
-			return { url: '', fileError: errorMessage }
+			return { url: "", fileError: errorMessage }
 		}
 	}
 }

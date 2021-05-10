@@ -1,7 +1,6 @@
-import { useState, Fragment, useCallback } from 'react'
-import { Topbar } from 'components/_shared/Topbar';
-import { Sidebar } from 'components/_shared/Sidebar';
-import { useStyles } from './styles';
+import { useState, Fragment, useCallback } from "react";
+import { Topbar, Sidebar } from "components/_shared";
+import { useStyles } from "./styles";
 
 export const AppLayout: React.FC = ({ children }) => {
   const [sidebarIsOpen, setSidebarOpen] = useState<boolean>(false);

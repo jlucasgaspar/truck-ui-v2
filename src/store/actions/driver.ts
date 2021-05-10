@@ -1,29 +1,29 @@
-import { Driver } from 'models/Driver';
-import { DriversActionTypes } from 'store/types/driver';
+import { Driver } from "models";
+import { DriversActionsTypes } from "store/types";
 
 class DriversActions {
-  public setDrivers = (drivers: Driver[]) => ({
-    type: DriversActionTypes.SET_DRIVERS,
+  public setDrivers = (drivers: Driver.Model[]) => ({
+    type: DriversActionsTypes.SET_DRIVERS,
     payload: drivers
   });
 
-  public setCurrentDriver = (driver: Driver) => ({
-    type: DriversActionTypes.SET_CURRENT_DRIVER,
+  public setCurrentDriver = (driver: Driver.Model) => ({
+    type: DriversActionsTypes.SET_CURRENT_DRIVER,
     payload: driver
   });
 
-  public create = (driver: Driver) => ({
-    type: DriversActionTypes.CREATE_DRIVER,
+  public create = (driver: Driver.Model) => ({
+    type: DriversActionsTypes.CREATE_DRIVER,
     payload: driver
   });
 
   public deleteById = (driverId: string) => ({
-    type: DriversActionTypes.DELETE_DRIVER,
+    type: DriversActionsTypes.DELETE_DRIVER,
     payload: driverId
   });
 
-  public update = (driver: Driver) => ({
-    type: DriversActionTypes.UPDATE_DRIVER,
+  public update = (driver: Driver.Model) => ({
+    type: DriversActionsTypes.UPDATE_DRIVER,
     payload: driver
   });
 }

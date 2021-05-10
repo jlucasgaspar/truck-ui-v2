@@ -1,7 +1,7 @@
-import { Typography, Grid, Paper, Link, Divider } from '@material-ui/core';
-import { LoginForm } from 'components/User';
-import { logoImage } from 'assets/images';
-import { useStyles } from './styles';
+import { Typography, Grid, Paper, Link, Divider } from "@material-ui/core";
+import { LoginForm } from "components/User";
+import { logoImage } from "assets/images";
+import { useStyles } from "./styles";
 
 export const LoginPage: React.FC = () => {
   const styles = useStyles();

@@ -1,16 +1,16 @@
-import { SessionActionTypes } from 'store/types/session';
+import { SessionActionsTypes } from "store/types";
 
 class SessionAction {
   public init = () => ({
-    type: SessionActionTypes.INIT_SESSION
+    type: SessionActionsTypes.INIT_SESSION
   });
 
   public finish = () => ({
-    type: SessionActionTypes.FINISH_SESSION
+    type: SessionActionsTypes.FINISH_SESSION
   });
 
   public setIsFirstFetch = (trueOrFalse: boolean) => ({
-    type: SessionActionTypes.IS_FIRST_FETCH,
+    type: SessionActionsTypes.IS_FIRST_FETCH,
     payload: trueOrFalse
   });
 }

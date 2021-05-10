@@ -1,21 +1,21 @@
-import { useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { Grid, MenuItem } from '@material-ui/core';
-import { ICompany } from 'models/Company';
-import { useCreateCompany } from 'hooks/company';
-import { OrangeButton, Input, FileInput } from 'components/_shared';
-import { brazilianStates } from './brazilianStates';
-import { resolver } from './validationResolver';
-import { useStyles } from './styles';
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { Grid, MenuItem } from "@material-ui/core";
+import { Company } from "models";
+import { useCreateCompany } from "hooks/company";
+import { OrangeButton, Input, FileInput } from "components/_shared";
+import { brazilianStates } from "./brazilianStates";
+import { resolver } from "./validationResolver";
+import { useStyles } from "./styles";
 
-type IForm = ICompany.FormFields.Create;
+type FormFields = Company.FormFields.Create;
 
 export const CreateCompanyForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<IForm>({ resolver });
+  const { register, handleSubmit, formState: { errors }, control, setValue } = useForm<FormFields>({ resolver });
   const { createCompany, isLoading } = useCreateCompany();
   const styles = useStyles();
 
-  const handleCreateCompany = useCallback(async (data: IForm) => {
+  const handleCreateCompany = useCallback(async (data: FormFields) => {
     await createCompany(data);
   }, [createCompany]);
 
@@ -110,7 +110,7 @@ export const CreateCompanyForm: React.FC = () => {
             loading={isLoading}
             select
             children={brazilianStates.map(state => (
-              <MenuItem key={state.id} value={state.value || ''}>
+              <MenuItem key={state.id} value={state.value || ""}>
                 {state.name}redux
               </MenuItem>
             ))}

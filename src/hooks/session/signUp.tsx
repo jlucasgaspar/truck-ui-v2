@@ -1,18 +1,18 @@
-import { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { IUser, User } from 'models/User';
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import { User } from "models";
 import { firebaseAuth } from 'config/firebase';
-import { api } from 'services';
-import { userActions, sessionActions } from 'store/actions';
-import { handleError, validateInput } from 'utils';
-import { useToast } from '../toast';
+import { api } from "services";
+import { userActions, sessionActions } from "store/actions";
+import { handleError, validateInput } from "utils";
+import { useToast } from "../toast";
 
 export const useSignup = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
   const { toast } = useToast()
 
-  const signUp = useCallback(async ({ email, name, password, phone }: IUser.FormFields.SignUp) => {
+  const signUp = useCallback(async ({ email, name, password, phone }: User.FormFields.SignUp) => {
     try {
       setLoading(true);
       const phoneValidated = validateInput.phone(phone);
@@ -25,8 +25,8 @@ export const useSignup = () => {
       if (!user) return dispatch(sessionActions.finish());
       const id = user.uid;
       await user.updateProfile({ displayName: name });
-      const userBody: IUser.HttpRequest.CreateBody = { id, name, email, phone: validatedPhone }
-      const { data } = await api.post<User>('/users', userBody);
+      const userBody: User.HttpRequest.CreateBody = { id, name, email, phone: validatedPhone }
+      const { data } = await api.post<User.Model>('/users', userBody);
       dispatch(userActions.setUser(data));
       toast.success(`Bem-vindo, ${name}!`);
       setLoading(false);

@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { IRootState } from 'store';
-import { useGetSessionInfo } from 'hooks/session';
-import { AppLayout } from 'layout/AppLayout';
-import { Loading } from 'components/_shared/Loading';
-import { UserWithoutCompanyRouter } from './UserWithoutCompanyRouter';
-import { AppRouter } from './AppRouter';
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { IRootState } from "store";
+import { useGetSessionInfo } from "hooks/session";
+import { AppLayout } from "layout/AppLayout";
+import { Loading } from "components/_shared";
+import { UserWithoutCompanyRouter } from "./UserWithoutCompanyRouter";
+import { AppRouter } from "./AppRouter";
 
 export const PrivateRouter: React.FC = () => {
 	const { user } = useSelector((state: IRootState) => state.userState);
